@@ -1,0 +1,57 @@
+# Source code management
+.git/
+.github/
+.gitignore
+
+# Development and build files
+src/
+rollup.config.js
+tsconfig.json
+.eslintrc
+.prettierrc
+.babelrc
+jest.config.js
+*.test.js
+*.test.ts
+*.test.tsx
+*.spec.js
+*.spec.ts
+*.spec.tsx
+__tests__/
+__mocks__/
+coverage/
+
+# Documentation and examples
+docs/
+examples/
+demo/
+.storybook/
+stories/
+
+# Editor and IDE files
+.vscode/
+.idea/
+*.sublime-*
+.DS_Store
+
+# Logs and debugging
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+*.log
+
+# Misc
+.env*
+.npmrc
+.travis.yml
+.circleci/
+.gitlab-ci.yml
+CHANGELOG.md
+CONTRIBUTING.md
+todo.md
+PUBLISHING_INSTRUCTIONS.md
+REPUBLISHING_INSTRUCTIONS.md
+
+# Keep dist directory for npm package
+!dist/
