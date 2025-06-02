@@ -1,6 +1,6 @@
 {
   "name": "@ahmedkira/custom-view",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A customizable React component for displaying field data in a grid layout",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
