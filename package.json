@@ -1,7 +1,7 @@
 {
-  "name": "@ahmedkira/custom-view",
-  "version": "1.0.10",
-  "description": "A customizable React component for displaying field data in a grid layout",
+  "name": "@ahmedkira/custom-table",
+  "version": "0.1.6",
+  "description": "A customizable React component for displaying table data with Material-UI.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
@@ -16,7 +16,7 @@
   "keywords": [
     "react",
     "component",
-    "custom-view",
+    "custom-table",
     "grid",
     "material-ui",
     "typescript"
@@ -27,11 +27,12 @@
     "@emotion/react": ">=11.0.0",
     "@emotion/styled": ">=11.0.0",
     "@mui/material": ">=5.0.0",
+    "@mui/icons-material": ">=5.0.0",
     "react": ">=16.8.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ahm3dkira/custom-view"
+    "url": "https://github.com/ahm3dkira/custom-table"
   },
   "publishConfig": {
     "access": "public"
@@ -39,6 +40,7 @@
   "devDependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.1.1",
     "@mui/material": "^7.1.0",
     "@rollup/plugin-commonjs": "^28.0.3",
     "@rollup/plugin-json": "^6.1.0",

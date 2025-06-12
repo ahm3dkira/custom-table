@@ -1,3 +1,4 @@
+// rollup.config.js
 const resolve = require('@rollup/plugin-node-resolve');
 const commonjs = require('@rollup/plugin-commonjs');
 const typescript = require('rollup-plugin-typescript2');
@@ -33,5 +34,5 @@ module.exports = {
       }
     }),
   ],
-  external: ['react', 'react-dom', '@mui/material']
+  external: ['react', 'react-dom', '@mui/material', '@mui/icons-material']
 };
