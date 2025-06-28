@@ -110,6 +110,7 @@ export const defaultConfig = {
 	getGetListURL: (model: string) => `/${model}`,
 
   // ------------------------------------ 
+  PAGINATION_TYPE: "type2",
 //   MAX_LENGTH: 50,
 //   MIN_LENGTH: 3,
 //   DEFAULT_DATE_FORMAT: 'YYYY-MM-DD',

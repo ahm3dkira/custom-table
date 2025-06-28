@@ -1,6 +1,6 @@
 {
   "name": "@ahmedkira/custom-table",
-  "version": "0.1.6",
+  "version": "0.1.9",
   "description": "A customizable React component for displaying table data with Material-UI.",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",

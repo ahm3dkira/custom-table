@@ -222,7 +222,7 @@ function Operations({ storeId, row, basicMenu, handleEdit, handleDelete, extraOp
 
 // ==============================|| ORDER TABLE ||============================== //
 
- function OrderTable({
+ function CustomTable({
   tableProps,
   search,
   handleEdit,
@@ -243,7 +243,8 @@ function Operations({ storeId, row, basicMenu, handleEdit, handleDelete, extraOp
   const [total, setTotal] = useState(0);
   const [page, setPage] = useState(0);
   const [pageSize, setPageSize] = useState(10);
-  const [searchQuery, setSearchQuery] = useState({ pageNumber: 1, pageSize: pageSize, ...search });
+  const defaultSearch = getConfig().PAGINATION_TYPE === "type2"? {pageNumber: 1}: {page: 1}
+  const [searchQuery, setSearchQuery] = useState({ ...defaultSearch, pageSize: pageSize, ...search });
   const [data, setData] = useState<any>(null);
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -288,10 +289,17 @@ function Operations({ storeId, row, basicMenu, handleEdit, handleDelete, extraOp
       // setPage(data.result.page - 1);
       // setPageSize(data.result.pageSize);
       // setTotal(data.total);
-      setTotal(data.totalCount);
+      if (getConfig().PAGINATION_TYPE==="type2"){
+        setTotal(data.totalCount);
+        setPage(data.pageNumber - 1);
+        setPageSize(data.pageSize);
+      } else {
+        setTotal(data.total);
+        setPage(data.page - 1);
+        setPageSize(data.pageSize);
+      }
       // setPage(data.page - 1);
-      setPage(data.pageNumber - 1);
-      setPageSize(data.pageSize);
+
     } else if (error) {
       // Handle error state if needed
       console.error('Error loading data:', error);
@@ -333,19 +341,28 @@ function Operations({ storeId, row, basicMenu, handleEdit, handleDelete, extraOp
       });
   }, [searchQuery, search]);
 
-  // const menuXD = useSelector((state: any) => state.menu);
-  const menuXD = {openComponentAccess: getDefaultAccess(storeId)}
-  // console.log('menuXDtable', menuXD.openComponentAccess);
+  const accessFlag = getDefaultAccess(storeId);
 
 
   const handleChangePage = (event: unknown, newPage: number) => {
-    setSearchQuery({ ...search, pageNumber: newPage + 1, pageSize: pageSize });
+    if(getConfig().PAGINATION_TYPE==="type2"){
+
+      setSearchQuery({ ...search, pageNumber: newPage + 1, pageSize: pageSize });
+    }else{
+      setSearchQuery({ ...search, page: newPage + 1, pageSize: pageSize });
+
+    }
   };
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if(getConfig().PAGINATION_TYPE==="type2"){
+
     setSearchQuery({ ...search, pageNumber: 1, pageSize: parseInt(event.target.value) || 10 });
+    } else {
+      setSearchQuery({ ...search, page: 1, pageSize: parseInt(event.target.value) || 10 });
+    }
   };
   let oprationsProps = tableProps;
-  if (menuXD.openComponentAccess === 1 && !TEST_MODE_NO_AUTH) {
+  if (accessFlag === 1 && !TEST_MODE_NO_AUTH) {
     oprationsProps = tableProps.filter((headCell: any) => headCell.id !== 'operations');
   }
   if (!data && !error) {
@@ -501,10 +518,13 @@ function Operations({ storeId, row, basicMenu, handleEdit, handleDelete, extraOp
                       <TableCell key={headCell.id} align="left">
                         {/* {row[headCell.prop]} */}
                         {/* TODO: max 20 chars */}
-                        {typeof row[headCell.prop] === 'string' && row[headCell.prop].length > MAX_CELL_LENGTH
-                          ? row[headCell.prop].substring(0, MAX_CELL_LENGTH) + '...'
-                          : row[headCell.prop]}
+                         <Tooltip title={typeof row[headCell.prop] === 'string' ? row[headCell.prop] : ''} arrow>
 
+                          {typeof row[headCell.prop] === 'string' && row[headCell.prop].length > MAX_CELL_LENGTH
+                            ? row[headCell.prop].substring(0, MAX_CELL_LENGTH) + '...'
+                            : row[headCell.prop]}
+
+                          </Tooltip>
                       </TableCell>
                     );
                   })}
@@ -530,4 +550,4 @@ function Operations({ storeId, row, basicMenu, handleEdit, handleDelete, extraOp
 }
 
 
-export default OrderTable;
+export default CustomTable;
